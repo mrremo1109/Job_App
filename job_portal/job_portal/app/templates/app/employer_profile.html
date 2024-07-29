@@ -1,0 +1,16 @@
+<!-- app/templates/app/employer_profile.html -->
+{% extends "app/base.html" %}
+
+{% block title %}Employer Profile{% endblock %}
+
+{% block content %}
+<h2>Employer Profile</h2>
+<p>Username: {{ employer.user.username }}</p>
+<p>Shop Name: {{ employer.shop_name }}</p>
+<p>Full Name of Owner: {{ employer.full_name }}</p>
+<p>Age: {{ employer.age }}</p>
+<p>Date of Birth: {{ employer.dob }}</p>
+<p>Shop Address: {{ employer.shop_address }}</p>
+<p>Location: <iframe src="https://www.google.com/maps?q={{ employer.location }}&output=embed"></iframe></p>
+<a href="{% url 'edit_employer_profile' %}">Edit Profile</a>
+{% endblock %}

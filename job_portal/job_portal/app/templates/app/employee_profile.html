@@ -1,0 +1,20 @@
+<!-- app/templates/app/employee_profile.html -->
+{% extends "app/base.html" %}
+
+{% block title %}Employee Profile{% endblock %}
+
+{% block content %}
+<h2>Employee Profile</h2>
+<p>Username: {{ employee.user.username }}</p>
+<p>Full Name: {{ employee.full_name }}</p>
+<p>Age: {{ employee.age }}</p>
+<p>Date of Birth: {{ employee.dob }}</p>
+<p>Address: {{ employee.address }}</p>
+<p>Education: {{ employee.education }}</p>
+<p>Work Experience: {{ employee.work_experience }}</p>
+<p>Number of Jobs Applied: {{ employee.jobs_applied }}</p>
+<p>Number of Jobs Confirmed: {{ employee.jobs_confirmed }}</p>
+<p>Number of Jobs Rejected: {{ employee.jobs_rejected }}</p>
+<p>Resume: <a href="{{ employee.resume.url }}">Download</a></p>
+<a href="{% url 'edit_employee_profile' %}">Edit Profile</a>
+{% endblock %}
