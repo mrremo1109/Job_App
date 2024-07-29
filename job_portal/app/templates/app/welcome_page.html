@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Welcome
+{% endblock %}
+
+{% block content %}
+    <h2>Welcome to the Job Portal</h2>
+    <p>Please <a href="{% url 'login' %}">login</a> or <a href="{% url 'employee_signup' %}">sign up as an employee</a> / <a href="{% url 'employer_signup' %}">sign up as an employer</a>.</p>
+{% endblock %}

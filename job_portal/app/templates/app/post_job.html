@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post a Job</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjB3r34W4Zcaa0uc7gHyQq_8dMo1xMxXY&libraries=places"></script>
+</head>
+<body>
+    <div class="container mx-auto mt-10">
+        <h1 class="text-3xl font-bold mb-4">Post a Job</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Post Job</button>
+        </form>
+        <div id="map" style="height: 300px;" class="mt-4"></div>
+    </div>
+    <script>
+        document.querySelector('input[name="postcode"]').addEventListener('blur', function() {
+            var postcode = this.value;
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'address': postcode }, function(results, status) {
+                if (status === 'OK') {
+                    var mapOptions = {
+                        zoom: 15,
+                        center: results[0].geometry.location
+                    }
+                    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
